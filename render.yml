@@ -4,5 +4,8 @@ services:
     env: go
     region: oregon
     plan: free
+    envVars:
+      - key: GO_VERSION
+        value: 1.25.5
     buildCommand: go build -o main .
     startCommand: ./main
