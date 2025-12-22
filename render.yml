@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: my-go-backend
+    name: 8byte-backend
     env: go
     region: oregon
     plan: free
