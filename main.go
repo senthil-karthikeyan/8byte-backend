@@ -6,12 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Example usage
 func main() {
-	// err := godotenv.Load()
-	// if err != nil {
-	// 	log.Fatalf("Error loading .env file")
-	// }
 
 	r := gin.Default()
 

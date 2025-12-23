@@ -32,13 +32,10 @@ func PortfolioHandler(path string) gin.HandlerFunc {
 
 	return func(c *gin.Context) {
 
-		// 1️⃣ extract symbols from CSV
 		var symbols []string
 		for _, r := range portfolio {
 			symbols = append(symbols, r.Symbol)
 		}
-
-		// 2️⃣ Google call ONCE, JSON returned for all stocks
 		data, err := services.GetGoogleFundamentalsBatch(
 			srv,
 			spreadsheetID,
@@ -51,7 +48,6 @@ func PortfolioHandler(path string) gin.HandlerFunc {
 
 		var response []PortfolioResponse
 
-		// 3️⃣ Build portfolio output
 		for _, r := range portfolio {
 
 			cmp := services.GetCMP(r.Symbol)
@@ -59,7 +55,6 @@ func PortfolioHandler(path string) gin.HandlerFunc {
 			presentValue := cmp * r.Quantity
 			gainLoss := presentValue - r.Investment
 
-			// finance lookup
 			fin := data[r.Symbol]
 
 			response = append(response, PortfolioResponse{
